@@ -2,7 +2,7 @@ drop schema if exists practica;
 drop user if exists usuario_practica; 
 CREATE SCHEMA practica ; 
 
-create user 'usuario_practica'@'%' identified by 'la_Clave.'; 
+create user 'usuario_practica'@'%' identified by 'la_Clave'; 
 
 grant all privileges on techshop.* to 'usuario_practica'@'%'; 
 flush privileges;
