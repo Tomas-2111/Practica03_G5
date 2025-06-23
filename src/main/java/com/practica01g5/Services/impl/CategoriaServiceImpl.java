@@ -1,4 +1,4 @@
-package com.practica01g5.Services.impl;
+package com.Practica01G5.Services.impl;
 
 import com.practica01g5.dao.CategoriaDao;
 import com.practica01g5.domain.Categoria;
@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Erick
  */
+@Service
 public class CategoriaServiceImpl implements CategoriaServices {
 
     @Autowired

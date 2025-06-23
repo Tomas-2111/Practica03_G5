@@ -15,13 +15,9 @@ public class Categoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_arbol")
     private Long idArbol;
-
     private String nombreComun;
-
     private String tipoFlor;
-
     private Float durezaMadera;
-
     private String rutaImagen;
 
     public Categoria() {

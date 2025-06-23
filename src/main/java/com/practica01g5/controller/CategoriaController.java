@@ -2,7 +2,7 @@ package com.practica01g5.controller;
 
 import com.practica01g5.domain.Categoria;
 import com.practica01g5.Services.CategoriaServices;
-import com.practica01g5.Services.impl.FirebaseStorage;
+import com.practica01g5.Services.impl.FirebaseStorageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +21,6 @@ public class CategoriaController {
     @Autowired
     private CategoriaServices arbolService;
 
-    @Autowired
-    private FirebaseStorage firebaseStorageService;
-
     @GetMapping("/listado")
     public String listado(Model model) {
         var arboles = arbolService.getArboles();
@@ -36,13 +33,20 @@ public class CategoriaController {
     public String nuevo(Categoria arbol) {
         return "/arbol/modifica";
     }
+    
+    @Autowired
+    private FirebaseStorageServiceImpl firebaseStorageService;
 
     @PostMapping("/guardar")
     public String guardar(Categoria arbol,
                           @RequestParam("imagenFile") MultipartFile imagenFile) {
         if (!imagenFile.isEmpty()) {
             arbolService.save(arbol);
-
+                arbol.setRutaImagen(
+                        firebaseStorageService.cargaImagen(
+                            imagenFile, 
+                            "categoria", 
+                            arbol.getIdArbol()));
         }
         arbolService.save(arbol);
         return "redirect:/arbol/listado";
