@@ -21,8 +21,8 @@ public class CategoriaController {
     @Autowired
     private CategoriaServices arbolService;
 
-    @Autowired
-    private FirebaseStorage firebaseStorageService;
+//    @Autowired
+//    private FirebaseStorage firebaseStorageService;
 
     @GetMapping("/listado")
     public String listado(Model model) {

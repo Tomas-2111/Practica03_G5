@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Erick
  */
+@Service
 public class CategoriaServiceImpl implements CategoriaServices {
 
     @Autowired
