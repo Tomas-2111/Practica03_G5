@@ -4,7 +4,7 @@ CREATE SCHEMA practica ;
 
 create user 'usuario_practica'@'%' identified by 'la_Clave'; 
 
-grant all privileges on techshop.* to 'usuario_practica'@'%'; 
+grant all privileges on practica.* to 'usuario_practica'@'%'; 
 flush privileges;
 
 create table practica.arbol (
