@@ -21,8 +21,6 @@ public class CategoriaController {
     @Autowired
     private CategoriaServices arbolService;
 
-//    @Autowired
-//    private FirebaseStorage firebaseStorageService;
 
     @GetMapping("/listado")
     public String listado(Model model) {
@@ -42,13 +40,13 @@ public class CategoriaController {
 
     @PostMapping("/guardar")
     public String guardar(Categoria arbol,
-                          @RequestParam("imagenFile") MultipartFile imagenFile) {
-        if (!imagenFile.isEmpty()) {
+                          @RequestParam("rutaImagen") MultipartFile rutaImagen) {
+        if (!rutaImagen.isEmpty()) {
             arbolService.save(arbol);
                 arbol.setRutaImagen(
                         firebaseStorageService.cargaImagen(
-                            imagenFile, 
-                            "categoria", 
+                            rutaImagen, 
+                            "arbol", 
                             arbol.getIdArbol()));
         }
         arbolService.save(arbol);
