@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "arbol")
-public class Categoria implements Serializable {
+public class Arbol implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
@@ -20,10 +20,10 @@ public class Categoria implements Serializable {
     private Float durezaMadera;
     private String rutaImagen;
 
-    public Categoria() {
+    public Arbol() {
     }
 
-    public Categoria(String nombreComun, String tipoFlor, Float durezaMadera, String rutaImagen) {
+    public Arbol(String nombreComun, String tipoFlor, Float durezaMadera, String rutaImagen) {
         this.nombreComun = nombreComun;
         this.tipoFlor = tipoFlor;
         this.durezaMadera = durezaMadera;

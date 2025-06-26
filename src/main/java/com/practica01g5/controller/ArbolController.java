@@ -1,7 +1,6 @@
 package com.practica01g5.controller;
 
-import com.practica01g5.domain.Categoria;
-import com.practica01g5.Services.CategoriaServices;
+import com.practica01g5.domain.Arbol;
 import com.practica01g5.Services.impl.FirebaseStorageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,14 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import lombok.extern.slf4j.Slf4j;
+import com.practica01g5.Services.ArbolServices;
 
 @Controller
 @Slf4j //manejar solicitudes de HHTP
 @RequestMapping("/arbol")//localhost:8080/categoria
-public class CategoriaController {
+public class ArbolController {
 
     @Autowired
-    private CategoriaServices arbolService;
+    private ArbolServices arbolService;
 
 
     @GetMapping("/listado")
@@ -31,7 +31,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/nuevo")
-    public String nuevo(Categoria arbol) {
+    public String nuevo(Arbol arbol) {
         return "/arbol/modifica";
     }
     
@@ -39,7 +39,7 @@ public class CategoriaController {
     private FirebaseStorageServiceImpl firebaseStorageService;
 
     @PostMapping("/guardar")
-    public String guardar(Categoria arbol,
+    public String guardar(Arbol arbol,
                           @RequestParam("imagenFile") MultipartFile imagenFile) {
         if (!imagenFile.isEmpty()) {
             arbolService.save(arbol); // Guardar primero para obtener el ID
@@ -52,13 +52,13 @@ public class CategoriaController {
 
 
     @GetMapping("/eliminar/{idArbol}")
-    public String eliminar(Categoria arbol) {
+    public String eliminar(Arbol arbol) {
         arbolService.delete(arbol);
         return "redirect:/arbol/listado";
     }
 
     @GetMapping("/modificar/{idArbol}")
-    public String modificar(Categoria arbol, Model model) {
+    public String modificar(Arbol arbol, Model model) {
         arbol = arbolService.getArbol(arbol);
         model.addAttribute("arbol", arbol);
         return "/arbol/modifica";

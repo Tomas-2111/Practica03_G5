@@ -1,44 +1,44 @@
-package com.Practica01G5.Services.impl;
+package com.practica01g5.Services.impl;
 
-import com.practica01g5.dao.CategoriaDao;
-import com.practica01g5.domain.Categoria;
-import com.practica01g5.Services.CategoriaServices;
+import com.practica01g5.dao.ArbolDao;
+import com.practica01g5.domain.Arbol;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.practica01g5.Services.ArbolServices;
 
 /**
  *
  * @author Erick
  */
 @Service
-public class CategoriaServiceImpl implements CategoriaServices {
+public class ArbolServiceImpl implements ArbolServices {
 
     @Autowired
-    private CategoriaDao arbolDao;
+    private ArbolDao arbolDao;
 
     @Override
     @Transactional(readOnly=true)
-    public List<Categoria> getArboles() {
+    public List<Arbol> getArboles() {
         return arbolDao.findAll();
     }
 
     @Override
     @Transactional(readOnly=true)
-    public Categoria getArbol(Categoria arbol) {
+    public Arbol getArbol(Arbol arbol) {
         return arbolDao.findById(arbol.getIdArbol()).orElse(null);
     }
 
     @Override
     @Transactional
-    public void save(Categoria arbol) {
+    public void save(Arbol arbol) {
         arbolDao.save(arbol);
     }
 
     @Override
     @Transactional
-    public void delete(Categoria arbol) {
+    public void delete(Arbol arbol) {
         arbolDao.delete(arbol);
     }
 }
