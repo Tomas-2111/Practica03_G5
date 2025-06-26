@@ -1,8 +1,8 @@
 drop schema if exists practica; 
 drop user if exists usuario_practica; 
-CREATE SCHEMA practica ; 
+CREATE SCHEMA practica; 
 
-create user 'usuario_practica'@'%' identified by 'la_Clave'; 
+create user 'usuario_practica'@'%' identified by 'arbolla_Clave'; 
 
 grant all privileges on practica.* to 'usuario_practica'@'%'; 
 flush privileges;

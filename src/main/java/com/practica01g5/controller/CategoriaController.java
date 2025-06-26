@@ -40,18 +40,16 @@ public class CategoriaController {
 
     @PostMapping("/guardar")
     public String guardar(Categoria arbol,
-                          @RequestParam("rutaImagen") MultipartFile rutaImagen) {
-        if (!rutaImagen.isEmpty()) {
-            arbolService.save(arbol);
-                arbol.setRutaImagen(
-                        firebaseStorageService.cargaImagen(
-                            rutaImagen, 
-                            "arbol", 
-                            arbol.getIdArbol()));
+                          @RequestParam("imagenFile") MultipartFile imagenFile) {
+        if (!imagenFile.isEmpty()) {
+            arbolService.save(arbol); // Guardar primero para obtener el ID
+            arbol.setRutaImagen(firebaseStorageService.cargaImagen(imagenFile, "arbol", arbol.getIdArbol()));
         }
         arbolService.save(arbol);
         return "redirect:/arbol/listado";
     }
+
+
 
     @GetMapping("/eliminar/{idArbol}")
     public String eliminar(Categoria arbol) {
